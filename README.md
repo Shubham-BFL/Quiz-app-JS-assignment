@@ -5,9 +5,12 @@ Build a Collaborative Quiz Platform
 Create a platform where users can create and share custom quizzes. Users will be able to create a set of questions, generate a unique link for their quiz, and share it with others. The quiz takers will use the link to access the quiz, and the creator will be able to view the scores of each participant.
 
 
+Link : https://shubham-bfl.github.io/Quiz-app-JS-assignment/
 
-
-
+> Register your account > login with same credential > 
+> Create Quiz (add as many questions you want) then save & get link (you have to copy link)
+> If you have previsously created quizes u can go to view dashboard
+> to delete ur account go to dashboard & delete account
 
 
 
