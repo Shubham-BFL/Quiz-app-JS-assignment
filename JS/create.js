@@ -99,13 +99,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const shareableLink = `${window.location.origin}/take-quiz.html?id=${quizId}`;
         shareLinkInput.value = shareableLink;
         shareLinkContainer.classList.remove('d-none');
-        alert('Quiz created successfully!');
+        displayMessage('Quiz created successfully!', 'success');
     });
+
+    function displayMessage(message, type = 'info') {
+        const container = document.getElementById('create-message-container');
+        if (!container) {
+            const form = document.getElementById('quiz-form');
+            const messageContainer = document.createElement('div');
+            messageContainer.id = 'create-message-container';
+            messageContainer.className = 'mb-3';
+            form.parentNode.insertBefore(messageContainer, form);
+        }
+        
+        const messageContainer = document.getElementById('create-message-container');
+        messageContainer.innerHTML = `
+            <div class="alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+    }
 
     copyBtn.addEventListener('click', () => {
         shareLinkInput.select();
         document.execCommand('copy');
-        alert('Link copied to clipboard!');
+        displayMessage('Link copied to clipboard!', 'success');
     });
 
     logoutBtn.addEventListener('click', () => {

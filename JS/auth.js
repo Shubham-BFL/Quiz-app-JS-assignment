@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
 
+    // Create message container for auth messages
+    const authContainer = document.querySelector('.card.p-4');
+    if (authContainer) {
+        const messageContainer = document.createElement('div');
+        messageContainer.id = 'auth-message-container';
+        messageContainer.className = 'mb-3';
+        authContainer.insertBefore(messageContainer, authContainer.firstChild);
+    }
+
     function saveToLocalStorage(key, data) {
         localStorage.setItem(key, JSON.stringify(data));
     }
@@ -9,6 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function getFromLocalStorage(key) {
         const data = localStorage.getItem(key);
         return data ? JSON.parse(data) : null;
+    }
+
+    function displayAuthMessage(message, type = 'info') {
+        const container = document.getElementById('auth-message-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+        }
     }
 
     registerForm.addEventListener('submit', (e) => {
@@ -19,14 +40,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let users = getFromLocalStorage('users') || [];
         if (users.find(u => u.email === email)) {
-            alert('Email already registered!');
+            displayAuthMessage('Email already registered!', 'error');
             return;
         }
 
         const newUser = { username, email, password };
         users.push(newUser);
         saveToLocalStorage('users', users);
-        alert('Registration successful! Please log in.');
+        displayAuthMessage('Registration successful! Please log in.', 'success');
         document.getElementById('pills-login-tab').click(); // Switch to login tab
     });
 
@@ -40,10 +61,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (user) {
             saveToLocalStorage('currentUser', user);
-            alert('Login successful!');
-            window.location.href = 'create-quiz.html'; // Redirect to quiz creation page
+            displayAuthMessage('Login successful! Redirecting...', 'success');
+            setTimeout(() => {
+                window.location.href = 'create-quiz.html'; // Redirect to quiz creation page
+            }, 1500);
         } else {
-            alert('Invalid email or password.');
+            displayAuthMessage('Invalid email or password.', 'error');
         }
     });
 });

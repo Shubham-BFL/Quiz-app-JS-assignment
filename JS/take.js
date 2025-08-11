@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!allAnswered) {
-            alert('Please answer all questions!');
+        displayMessage('Please answer all questions!', 'warning');
             return;
         }
 
