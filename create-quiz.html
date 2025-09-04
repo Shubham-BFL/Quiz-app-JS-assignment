@@ -20,10 +20,10 @@
 
 <div class="container my-5">
     <h2 class="text-center mb-4">Create Your Quiz</h2>
-    <form id="quiz-form">
+    <form id="quiz-form" autocomplete="off">
         <div class="mb-3">
             <label for="quiz-title" class="form-label">Quiz Title</label>
-            <input type="text" class="form-control" id="quiz-title" required>
+            <input type="text" class="form-control" id="quiz-title" required autocomplete="off">
         </div>
         
         <div id="questions-container">
@@ -32,11 +32,11 @@
                     <h5 class="card-title">Question 1</h5>
                     <div class="mb-3">
                         <label for="question-text-0" class="form-label">Question Text</label>
-                        <input type="text" class="form-control" id="question-text-0" required>
+                        <input type="text" class="form-control" id="question-text-0" required autocomplete="off">
                     </div>
                     <div class="row g-2 mb-2">
                         <div class="col">
-                            <input type="text" class="form-control answer-input" placeholder="Answer 1" required>
+                            <input type="text" class="form-control answer-input" placeholder="Answer 1" required autocomplete="off">
                         </div>
                         <div class="col-auto d-flex align-items-center">
                             <input class="form-check-input correct-answer" type="radio" name="correct-0" value="0" required>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="row g-2 mb-2">
                         <div class="col">
-                            <input type="text" class="form-control answer-input" placeholder="Answer 2" required>
+                            <input type="text" class="form-control answer-input" placeholder="Answer 2" required autocomplete="off">
                         </div>
                         <div class="col-auto d-flex align-items-center">
                             <input class="form-check-input correct-answer" type="radio" name="correct-0" value="1" required>
